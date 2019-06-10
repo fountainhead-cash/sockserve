@@ -208,6 +208,9 @@ tr {
     <header>
       <a href='/' class='brand'>Bitsocket Fountainhead</a>
       <div class='flexible'></div>
+      <% if(bitdb == true) { %>
+      <a id='switchSck' href='/explorer' class='item'></i> Switch to BitDB</a>
+      <% }; %>
       <a target='_blank' href='https://docs.fountainhead.cash' class='item'><i class='fas fa-book'></i> Documentation</a>
     </header>
     <div class='jumbotron align-center header'>
@@ -338,6 +341,10 @@ var run = function() {
 var updateUrl = function(query) {
   var base64 = btoa(query)
   var u = document.querySelector(".url");
+  <% if(bitdb == true) { %>
+  var switchSck = document.querySelector("#switchSck"); // switch to bitserve
+  switchSck.href = "/explorer/" + base64;
+  <% }; %>
   u.value = endpoint + base64;
   u.classList.add("updated");
   setTimeout(function() {

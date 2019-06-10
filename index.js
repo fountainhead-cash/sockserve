@@ -29,13 +29,15 @@ app.get(/^\/channel\/(.+)/, function(req, res) {
   let decoded = Buffer.from(encoded, 'base64').toString()
   res.render('channel', {
     bitserve_url: config.url,
-    code: decoded
+    code: decoded,
+    bitdb: process.env.same_domain_bitdb
   })
 });
 app.get('/channel', function (req, res) {
   res.render('channel', {
     bitserve_url: config.url,
-    code: JSON.stringify(config.query, null, 2)
+    code: JSON.stringify(config.query, null, 2),
+    bitdb: process.env.same_domain_bitdb
   })
 });
 app.get('/', function(req, res) {
