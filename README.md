@@ -27,11 +27,6 @@ $(EDITOR) .env
 
 ```
 
-Start Sockserve
-```
-npm start
-```
-
 ### Running as a daemon
 
 Install PM2 using NPM
@@ -41,5 +36,5 @@ npm install pm2 -g
 
 CD to install location and run bitd
 ```
-pm2 start index.js
+pm2 start index.js --name="Sockserve"
 ```
