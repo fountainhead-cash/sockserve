@@ -302,7 +302,9 @@ tr {
     </div>
   </main>
 </body>
+<script src="/buffer.min.js"></script>
 <script>
+const btoa_ext = buf => Buffer.Buffer.from(buf).toString('base64');
 
 var audio = {
   u: new Audio('/u.mp3'),
@@ -329,7 +331,7 @@ document.addEventListener("DOMContentLoaded", function(e) {
   })
   editor.getSession().on('change', function() {
     var query = editor.getValue();
-    history.pushState(null, null, window.location.origin + "/channel/" + btoa(query));
+    history.pushState(null, null, window.location.origin + "/channel/" + btoa_ext(query));
     updateUrl(query)
   })
   run()
@@ -363,7 +365,7 @@ var run = function() {
             bitsocket.close()
         }
 
-        bitsocket = new EventSource(endpoint + btoa(query));
+        bitsocket = new EventSource(endpoint + btoa_ext(query));
         
         bitsocket.onopen = function(e) { // start spinning
           document.querySelector(".loading i.spinner").classList.add("fa-spin")
@@ -400,7 +402,7 @@ var run = function() {
   }
 }
 var updateUrl = function(query) {
-  var base64 = btoa(query)
+  var base64 = btoa_ext(query)
   var u = document.querySelector(".url");
   <% if(bitdb == true) { %>
   var switchSck = document.querySelector("#switchSck"); // switch to bitserve
