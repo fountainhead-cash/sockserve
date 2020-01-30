@@ -8,10 +8,7 @@ const bitsocketd = require('fountainhead-core').bitsocketd
 const config = {
   "query": {
     "v": 3,
-    "q": { "find": {} },
-    "r": {
-      "f": "[.[] | .out[] | .str]"
-     }
+    "q": { "find": {} }
   },
   "host": process.env.sockserve_host ? process.env.sockserve_host : "http://127.0.0.1",
   "port": Number.parseInt(process.env.sockserve_port ? process.env.sockserve_port : 3001)
