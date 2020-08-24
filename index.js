@@ -57,11 +57,13 @@ app.listen(config.port, () => {
 bitsocketd.init({
     bit: {
         host: process.env.zmq_outgoing_host ? process.env.zmq_outgoing_host : '0.0.0.0',
-        port: Number.parseInt(process.env.zmq_outgoing_port ? process.env.zmq_outgoing_port : 28339)
+        port: Number.parseInt(process.env.zmq_outgoing_port ? process.env.zmq_outgoing_port : 28339),
+        logs: 'dev'
     },
     socket: {
         port: process.env.sockserve_port ? process.env.sockserve_port : 3000,
-        app: app
+        app: app,
+        logs: 'dev'
     },
     heartbeat: 10
 });
